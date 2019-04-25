@@ -6,7 +6,7 @@ spec:
   selector: 
     matchLabels: 
       app: java 
-  replicas: 2 # tells deployment to run 2 pods matching the template 
+  replicas:  {{ .Values.replicaCount }}
   template:
     metadata: 
       labels: 
@@ -14,11 +14,11 @@ spec:
     spec: 
       containers: 
       - name: java 
-        image: autodeploy.azurecr.io/csandhya8/springbootmavenjunitsample:#{Release.Artifacts.Springbootmavenjunitsample.BuildId}#
+        image: {{ .Values.jenkinsmaven.image.repository }}:{{ .Values.jenkinsmaven.image.tag }}
         ports: 
         - containerPort: 8080
       imagePullSecrets:
-      - name: autodeploy      
+      - name: {{ .Values.imagePullSecrets }}    
 --- 
 # https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service  
 kind: Service 
@@ -30,6 +30,6 @@ spec:
     app: java 
   ports: 
   - protocol: TCP 
-    port: 80 
-    targetPort: 80 
+    port: {{ .Values.jenkinsmaven.image.port }}
+    targetPort: {{ .Values.jenkinsmaven.image.targetPort }} 
   type: LoadBalancer 
