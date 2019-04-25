@@ -3,12 +3,12 @@ imagePullSecrets: autodeploy
 jenkinsmaven:
   image:
     repository: autodeploy.azurecr.io/csandhya8/springbootmavenjunitsample
-    tag: #{Release.Artifacts._Auto-Deploy-Docker container-CI.BuildId}#
+    tag: #{Release.Artifacts._helm-app1.BuildId}#
     port: 80
     targetPort: 80
 myapp:
   image:
     repository: autodeploy.azurecr.io/csandhya8/spring-boot-maven-example-helloworld
-    tag: #{Release.Artifacts._autodeploy2.BuildId}#
+    tag: #{Release.Artifacts._helm-app2.BuildId}#
     port: 8081
     targetPort: 8081
