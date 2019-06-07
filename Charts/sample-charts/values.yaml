@@ -2,13 +2,13 @@ replicaCount: 1
 imagePullSecrets: autodeploy
 jenkinsmaven:
   image:
-    repository: autodeploy.azurecr.io/csandhya8/springbootmavenjunitsample
-    tag: #{Release.Artifacts._helm-app1.BuildId}#
+    repository: imageacr.azurecr.io/csandhya8/springbootmavenjunitsample
+    tag: #{Release.Artifacts._sample.BuildId}#
     port: 80
     targetPort: 80
 myapp:
   image:
-    repository: autodeploy.azurecr.io/csandhya8/spring-boot-maven-example-helloworld
-    tag: #{Release.Artifacts._helm-app2.BuildId}#
+    repository: imageacr.azurecr.io/csandhya8/spring-boot-maven-example-helloworld
+    tag: #{Release.Artifacts._Multi-Stage-Docker container-CI.BuildId}#
     port: 8081
     targetPort: 8081
